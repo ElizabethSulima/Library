@@ -2,7 +2,7 @@ from datetime import date
 
 from models.base import Base, int_pk
 from sqlalchemy import ForeignKey, func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 
 class Borrow(Base):
@@ -14,3 +14,6 @@ class Borrow(Base):
         server_default=func.now()  # pylint:disable=E1102
     )
     return_date: Mapped[date] = mapped_column(nullable=True)
+    book: Mapped["Book"] = relationship(  # type:ignore[name-defined]
+        lazy="joined", back_populates="borrow"
+    )

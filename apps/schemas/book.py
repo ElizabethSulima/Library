@@ -1,19 +1,20 @@
 from pydantic import BaseModel, ConfigDict
+from schemas.author import AuthorResponse
 
 
 class Book(BaseModel):
     title: str
     description: str
-    author_id: int
     count_copies: int
 
 
 class BookCreate(Book):
-    pass
+    author_id: int
 
 
 class BookResponse(Book):
     id: int
+    author: AuthorResponse
     model_config = ConfigDict(from_attributes=True)
 
 

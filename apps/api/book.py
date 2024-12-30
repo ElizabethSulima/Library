@@ -27,7 +27,7 @@ async def get_book_id(book_id: int, session: dependency.AsyncSessionDepency):
 )
 async def create_book(
     session: dependency.AsyncSessionDepency,
-    book_data: sb.Book,
+    book_data: sb.BookCreate,
 ):
     return await BookServices(session).post_book(book_data)
 
